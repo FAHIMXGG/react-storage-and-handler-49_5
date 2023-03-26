@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { getTotal } from '../../utilitis/calcu';
 import Cosmetic from '../Cosmetic/Cosmetic';
 
 const Cosmetics = () => {
@@ -11,9 +12,14 @@ const Cosmetics = () => {
         .then(res => res.json())
         .then(data => setCosmetic(data))
     },[])
+
+
+    const total = getTotal(cosmetics)
+        
     return (
         <div>
             <h1>welcome to my store</h1>
+            <p>money needed {total}</p>
             {
                 cosmetics.map(cosmetic => <Cosmetic 
                     key={cosmetic.id}
